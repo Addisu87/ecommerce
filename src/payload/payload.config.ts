@@ -95,6 +95,10 @@ export default buildConfig({
   csrf: ['https://checkout.stripe.com', process.env.PAYLOAD_PUBLIC_SERVER_URL || ''].filter(
     Boolean,
   ),
+  rateLimit: {
+    max: 2000,
+    trustProxy: true,
+  },
   endpoints: [
     {
       path: '/create-payment-intent',
