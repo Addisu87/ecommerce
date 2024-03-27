@@ -1,5 +1,6 @@
 import { Footer } from '../../../payload/payload-types'
 import { fetchFooter } from '../../_api/fetchGlobals'
+// eslint-disable-next-line import/namespace
 import FooterComponent from './FooterComponent'
 
 export async function Footer() {
@@ -8,8 +9,10 @@ export async function Footer() {
   try {
     footer = await fetchFooter()
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
+
+  const navItems = footer?.navItems || []
 
   return (
     <>
