@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Gutter } from '../../_components/Gutter'
 import { profileNavItems } from '../../constants'
@@ -17,13 +18,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             <ul>
               {profileNavItems.map(item => (
-                <li key={item.url} className={classes.navItem}>
-                  <Image src={item.icon} alt={item.title} width={24} height={24} />
-                  <p>{item.title}</p>
+                <li key={item.title}>
+                  <Link href={item.url} className={classes.navItem}>
+                    <Image src={item.icon} alt={item.title} width={24} height={24} />
+                    <p>{item.title}</p>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
+          {children}
         </div>
       </Gutter>
     </div>
