@@ -1,4 +1,11 @@
+import Link from 'next/link'
+
+import { Media } from '../../../_components/Media'
+import { Price } from '../../../_components/Price'
+import { formatDateTime } from '../../../_utilities/formatDateTime'
 import { getMeUser } from '../../../_utilities/getMeUser'
+
+import classes from './index.module.scss'
 
 const Purchases = async () => {
   const { user } = await getMeUser({
@@ -9,85 +16,50 @@ const Purchases = async () => {
 
   return (
     <div>
-      <Fragment>
-        <RenderParams className={classes.params} />
+      <h5>Purchased Products</h5>
 
-        <LowImpactHero
-          type="lowImpact"
-          media={null}
-          richText={[
-            {
-              type: 'h1',
-              children: [
-                {
-                  text: 'Account',
-                },
-              ],
-            },
-            {
-              type: 'paragraph',
-              children: [
-                {
-                  text: 'This is your account dashboard. Here you can update your account information, view your purchased products, and browse your order history. To manage all users, ',
-                },
-                {
-                  type: 'link',
-                  url: '/admin/collections/users',
-                  children: [
-                    {
-                      text: 'login to the admin dashboard.',
-                    },
-                  ],
-                },
-              ],
-            },
-          ]}
-        />
-        <Gutter className={classes.account}>
-          <HR />
-          <h2>Purchased Products</h2>
-          <p>
-            These are the products you have purchased over time. This provides a way for you to
-            access digital assets or gated content behind a paywall. This is different from your
-            orders, which are directly associated with individual payments.
-          </p>
-          <div>
-            {user?.purchases?.length || 0 > 0 ? (
-              <ul className={classes.purchases}>
-                {user?.purchases?.map((purchase, index) => {
-                  return (
-                    <li key={index} className={classes.purchase}>
-                      {typeof purchase === 'string' ? (
-                        <p>{purchase}</p>
-                      ) : (
-                        <h4>
-                          <Link href={`/products/${purchase.slug}`}>{purchase.title}</Link>
-                        </h4>
-                      )}
-                    </li>
-                  )
-                })}
-              </ul>
-            ) : (
-              <div className={classes.noPurchases}>You have no purchases.</div>
-            )}
-          </div>
-          <HR />
-          <h2>Orders</h2>
-          <p>
-            These are the orders you have placed over time. Each order is associated with an payment
-            intent. As you order products, they will appear in your "purchased products" list.
-          </p>
-          <Button
-            className={classes.ordersButton}
-            href="/orders"
-            appearance="primary"
-            label="View orders"
-          />
-          <HR />
-          <Button href="/logout" appearance="secondary" label="Log out" />
-        </Gutter>
-      </Fragment>
+      <div>
+        {user?.purchases?.length || 0 > 0 ? (
+          <ul className={classes.purchases}>
+            {user?.purchases?.map((purchase, index) => {
+              return (
+                <li key={index} className={classes.purchase}>
+                  {typeof purchase === 'string' ? (
+                    <p>{purchase} Test</p>
+                  ) : (
+                    <Link href={`/products/${purchase.slug}`} className={classes.item}>
+                      <div className={classes.mediaWrapper}>
+                        {!purchase.meta.image && (
+                          <div className={classes.placeholder}>No image</div>
+                        )}
+                        {purchase.meta.image && typeof purchase.meta.image !== 'string' && (
+                          <Media
+                            className={classes.image}
+                            imgClassName={classes.image}
+                            resource={purchase.meta.image}
+                            fill
+                          />
+                        )}
+                      </div>
+
+                      <div className={classes.itemDetails}>
+                        <h6>{purchase.title}</h6>
+                        <Price product={purchase} />
+
+                        <p className={classes.purchaseDate}>{`Purchased On: ${formatDateTime(
+                          purchase.createdAt,
+                        )}`}</p>
+                      </div>
+                    </Link>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        ) : (
+          <div className={classes.noPurchases}>You have no purchases.</div>
+        )}
+      </div>
     </div>
   )
 }
