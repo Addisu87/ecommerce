@@ -11,7 +11,6 @@ import classes from './index.module.scss'
 const Filters = ({ categories }: { categories: Category[] }) => {
   const { categoryFilters, sort, setCategoryFilters, setSort } = useFilter()
 
-  // product categories filter
   const handleCategories = (categoryId: string) => {
     if (categoryFilters.includes(categoryId)) {
       const updatedCategories = categoryFilters.filter(id => id !== categoryId)
@@ -22,7 +21,6 @@ const Filters = ({ categories }: { categories: Category[] }) => {
     }
   }
 
-  // sort product
   const handleSort = (value: string) => setSort(value)
 
   return (
