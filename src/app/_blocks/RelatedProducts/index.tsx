@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Product } from '../../../payload/payload-types'
 import { Card } from '../../_components/Card'
 import { Gutter } from '../../_components/Gutter'
@@ -21,7 +19,6 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = props => {
     <div className={classes.relatedProducts}>
       <Gutter>
         <h3 className={classes.title}>Related Products</h3>
-
         <div className={classes.grid}>
           {docs?.map(doc => {
             if (typeof doc === 'string') return null
