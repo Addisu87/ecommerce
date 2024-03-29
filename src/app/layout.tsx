@@ -2,6 +2,7 @@ import React from 'react'
 import { Metadata } from 'next'
 import { Jost } from 'next/font/google'
 
+import { Footer } from './_components/Footer'
 import { Header } from './_components/Header'
 import { Providers } from './_providers'
 import { InitTheme } from './_providers/Theme/InitTheme'
@@ -25,7 +26,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className={jost.variable}>
         <Providers>
-          {/* <AdminBar /> */}
           {/* @ts-expect-error */}
           <Header />
           <main className="main">{children}</main>
