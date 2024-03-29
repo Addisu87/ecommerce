@@ -7,23 +7,25 @@ import { useFilter } from '../../../_providers/Filter'
 
 import classes from './index.module.scss'
 
-interface categoryCardProps {
+type CategoryCardProps = {
   category: Category
 }
 
-const CategoryCard = ({ category }: categoryCardProps) => {
+const CategoryCard = ({ category }: CategoryCardProps) => {
   const media = category.media as Media
-
   const { setCategoryFilters } = useFilter()
+
+  // Add null check for media before accessing its properties
+  const backgroundImageStyle = media ? { backgroundImage: `url(${media.url})` } : {}
 
   return (
     <Link
       href="/products"
       className={classes.card}
-      style={{ backgroundImage: `url(${media.url})` }}
+      style={backgroundImageStyle}
       onClick={() => setCategoryFilters([category.id])}
     >
-      <p className={classes.tittle}>{category.title}</p>
+      <p className={classes.title}>{category.title}</p>
     </Link>
   )
 }
