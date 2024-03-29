@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -19,12 +19,14 @@ const CartItem = ({ product, title, metaImage, qty, addItemToCart }) => {
     setQuantity(updatedQty)
     addItemToCart({ product, quantity: Number(updatedQty) })
   }
+
   const incrementQty = () => {
     const updatedQty = quantity + 1
 
     setQuantity(updatedQty)
     addItemToCart({ product, quantity: Number(updatedQty) })
   }
+
   const enterQty = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedQty = Number(e.target.value)
 
@@ -33,11 +35,11 @@ const CartItem = ({ product, title, metaImage, qty, addItemToCart }) => {
   }
 
   return (
-    <li key={title} className={classes.item}>
+    <li className={classes.item} key={title}>
       <Link href={`/products/${product.slug}`} className={classes.mediaWrapper}>
-        {!metaImage && <span>No Image</span>}
+        {!metaImage && <span>No image</span>}
         {metaImage && typeof metaImage !== 'string' && (
-          <Media imgClassName={classes.image} className={classes.media} resource={metaImage} fill />
+          <Media className={classes.media} imgClassName={classes.image} resource={metaImage} fill />
         )}
       </Link>
 

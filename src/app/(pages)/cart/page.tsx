@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -48,7 +47,10 @@ export default async function Cart() {
   try {
     settings = await fetchSettings()
   } catch (error) {
-    console.error(error)
+    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
+    // so swallow the error here and simply render the page with fallback data where necessary
+    // in production you may want to redirect to a 404  page or at least log the error somewhere
+    // console.error(error)
   }
 
   return (
@@ -71,7 +73,10 @@ export async function generateMetadata(): Promise<Metadata> {
       slug: 'cart',
     })
   } catch (error) {
-    console.log(error)
+    // don't throw an error if the fetch fails
+    // this is so that we can render a static cart page for the demo
+    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
+    // in production you may want to redirect to a 404  page or at least log the error somewhere
   }
 
   if (!page) {
