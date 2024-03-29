@@ -1490,7 +1490,7 @@
 
 "@payloadcms/plugin-cloud@^3.0.0":
   version "3.0.0"
-  resolved "https://registry.npmjs.org/@payloadcms/plugin-cloud/-/plugin-cloud-3.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-cloud/-/plugin-cloud-3.0.0.tgz#3db7c4ad4bf3d3e42329bdf085136f89dea0df43"
   integrity sha512-Ny/026XiUBTdpLhyL3PgwT0/VAxmgqWehGkxxUCyBLFNpTL5ds/mTKMXxd9S290zOEdw2I4/CfUXK5zaSMx5Cg==
   dependencies:
     "@aws-sdk/client-cognito-identity" "^3.289.0"
