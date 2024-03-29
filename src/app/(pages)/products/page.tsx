@@ -1,3 +1,4 @@
+import React from 'react'
 import { draftMode } from 'next/headers'
 
 import { Category, Page } from '../../../payload/payload-types'
@@ -25,14 +26,14 @@ const Products = async () => {
 
     categories = await fetchDocs<Category>('categories')
   } catch (error) {
-    console.log(error) // eslint-disable-line no-console
+    console.log(error)
   }
 
   return (
     <div className={classes.container}>
       <Gutter className={classes.products}>
         <Filters categories={categories} />
-        <Blocks blocks={page.layout} disableTopPadding={true} />
+        <Blocks blocks={page?.layout} disableTopPadding={true} />
       </Gutter>
       <HR />
     </div>
