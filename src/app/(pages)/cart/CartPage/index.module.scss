@@ -7,9 +7,9 @@
 .cartWrapper {
   display: grid;
   grid-template-columns: 65% 1fr;
-  gap: 60px;
+  gap: 50px;
 
-  @include large-break {
+  @include small-break {
     grid-template-columns: 1fr;
   }
 }
@@ -30,7 +30,7 @@
   grid-template-columns: 2fr 1fr 1fr;
 }
 
-.headersubtotal {
+.headerSubtotal {
   text-align: end;
 }
 
