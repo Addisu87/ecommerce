@@ -49,12 +49,14 @@ const Promotion = () => {
           choices and amazing deals. Don&apos;t miss out! 🎁 🛒
         </p>
 
-        <ul className={classes.stats}>
-          <StatBox label="Days" value={time.days} />
-          <StatBox label="Hours" value={time.hours} />
-          <StatBox label="Minutes" value={time.minutes} />
-          <StatBox label="Seconds" value={time.seconds} />
-        </ul>
+        <div className={classes.statsContainer}>
+          <ul className={classes.stats}>
+            <StatBox label="Days" value={time.days} />
+            <StatBox label="Hours" value={time.hours} />
+            <StatBox label="Minutes" value={time.minutes} />
+            <StatBox label="Seconds" value={time.seconds} />
+          </ul>
+        </div>
       </div>
     </section>
   )
