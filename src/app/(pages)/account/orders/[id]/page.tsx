@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -47,7 +47,7 @@ export default async function Order({ params: { id } }) {
     <div>
       <h5>
         {`Order`}
-        <span className={classes.id}>{`${order.id}`}</span>
+        <span className={classes.id}>{` ${order.id}`}</span>
       </h5>
       <div className={classes.itemMeta}>
         <p>{`ID: ${order.id}`}</p>
@@ -87,7 +87,6 @@ export default async function Order({ params: { id } }) {
                       />
                     )}
                   </Link>
-
                   <div className={classes.rowContent}>
                     {!stripeProductID && (
                       <p className={classes.warning}>

@@ -37,23 +37,23 @@ export default async function Orders() {
       })
       ?.then(json => json.docs)
   } catch (error) {
-    throw new Error(`Error: ${error}`)
+    console.error(error)
   }
 
   return (
     <div>
-      <h1>My Orders</h1>
+      <h5>My Orders</h5>
       {(!orders || !Array.isArray(orders) || orders?.length === 0) && (
         <p className={classes.noOrders}>You have no orders.</p>
       )}
       <RenderParams />
       {orders && orders.length > 0 && (
-        <ul className={classes.ordersList}>
+        <ul className={classes.orders}>
           {orders?.map(order => (
-            <li key={order.id} className={classes.orderItem}>
+            <li key={order.id} className={classes.order}>
               <Link className={classes.item} href={`/account/orders/${order.id}`}>
                 <div className={classes.itemContent}>
-                  <h4 className={classes.itemTitle}>{`Order ${order.id}`}</h4>
+                  <h6 className={classes.itemTitle}>{`Order ${order.id}`}</h6>
                   <div className={classes.itemMeta}>
                     <p>
                       {'Total: '}

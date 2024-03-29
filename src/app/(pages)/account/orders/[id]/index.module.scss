@@ -10,8 +10,8 @@
   gap: 8px;
   margin: 16px 0;
   padding: 16px 0;
-  border-top: 1px solid var(--color-black-50);
-  border-bottom: 1px solid var(--color-black-50);
+  border-top: 1px solid var(--color-dark-50);
+  border-bottom: 1px solid var(--color-dark-50);
 }
 
 .total {
@@ -60,7 +60,7 @@
   color: var(--theme-warning-500);
 }
 
-:global([data-theme="light"]) {
+:global([data-theme='light']) {
   .warning {
     color: var(--theme-error-500);
   }
@@ -88,6 +88,7 @@
 }
 
 .image {
+  padding: 8px;
   object-fit: contain;
 }
 
@@ -102,4 +103,3 @@
 .hr {
   margin: 0;
 }
-

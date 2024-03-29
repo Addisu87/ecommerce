@@ -21,7 +21,7 @@
   font-weight: 600;
 }
 
-.ordersList {
+.orders {
   list-style: none;
   padding: 0;
   display: flex;
@@ -30,7 +30,7 @@
   border-top: 1px solid var(--color-dark-50);
 }
 
-.orderItem {
+.order {
   padding: 16px 0;
   border-bottom: 1px solid var(--color-dark-50);
 }

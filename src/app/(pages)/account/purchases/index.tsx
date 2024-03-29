@@ -7,7 +7,7 @@ import { getMeUser } from '../../../_utilities/getMeUser'
 
 import classes from './index.module.scss'
 
-const Purchases = async () => {
+export default async function Purchases() {
   const { user } = await getMeUser({
     nullUserRedirect: `/login?error=${encodeURIComponent(
       'You must be logged in to access your account.',
@@ -17,7 +17,6 @@ const Purchases = async () => {
   return (
     <div>
       <h5>Purchased Products</h5>
-
       <div>
         {user?.purchases?.length || 0 > 0 ? (
           <ul className={classes.purchases}>
@@ -33,20 +32,13 @@ const Purchases = async () => {
                           <div className={classes.placeholder}>No image</div>
                         )}
                         {purchase.meta.image && typeof purchase.meta.image !== 'string' && (
-                          <Media
-                            className={classes.image}
-                            imgClassName={classes.image}
-                            resource={purchase.meta.image}
-                            fill
-                          />
+                          <Media imgClassName={classes.image} resource={purchase.meta.image} />
                         )}
                       </div>
-
                       <div className={classes.itemDetails}>
                         <h6>{purchase.title}</h6>
                         <Price product={purchase} />
-
-                        <p className={classes.purchaseDate}>{`Purchased On: ${formatDateTime(
+                        <p className={classes.purchasedDate}>{`Purchased On: ${formatDateTime(
                           purchase.createdAt,
                         )}`}</p>
                       </div>
@@ -63,5 +55,3 @@ const Purchases = async () => {
     </div>
   )
 }
-
-export default Purchases
