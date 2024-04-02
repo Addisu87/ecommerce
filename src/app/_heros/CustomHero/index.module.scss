@@ -5,9 +5,12 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  margin: 0 auto;
+  padding: 0 60px;
 
   @include small-break {
     margin: 0;
+    padding: 0 20px;
   }
 }
 

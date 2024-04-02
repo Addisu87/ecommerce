@@ -39,15 +39,10 @@ export default async function Page({ params: { slug = 'home' } }) {
 
     categories = await fetchDocs<Category>('categories')
   } catch (error) {
-    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // so swallow the error here and simply render the page with fallback data where necessary
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
     console.error(error) // eslint-disable-line no-console
   }
 
   // if no `home` page exists, render a static one using dummy content
-  // you should delete this code once you have a home page in the CMS
-  // this is really only useful for those who are demoing this template
   if (!page && slug === 'home') {
     page = staticHome
   }
@@ -63,7 +58,6 @@ export default async function Page({ params: { slug = 'home' } }) {
       {slug === 'home' ? (
         <section>
           <Hero {...hero} />
-
           <Gutter className={classes.home}>
             <Categories categories={categories} />
             <Promotion />
@@ -103,10 +97,7 @@ export async function generateMetadata({ params: { slug = 'home' } }): Promise<M
       draft: isDraftMode,
     })
   } catch (error) {
-    // don't throw an error if the fetch fails
-    // this is so that we can render a static home page for the demo
-    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
+    console.error(error) // eslint-disable-line no-console
   }
 
   if (!page && slug === 'home') {
