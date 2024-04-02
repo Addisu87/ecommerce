@@ -14,6 +14,7 @@ const Promotion = () => {
 
   const [date, setDate] = useState()
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const targetDate = new Date()
   targetDate.setDate(targetDate.getDate() + 7)
 
@@ -37,7 +38,7 @@ const Promotion = () => {
     return () => {
       clearInterval(timerInterval)
     }
-  }, [])
+  }, [targetDate])
 
   return (
     <section className={classes.promotion}>
